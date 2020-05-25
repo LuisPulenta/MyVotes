@@ -1,0 +1,21 @@
+﻿@model MiApp.Web.Data.Entities.ManagerEntity
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Borrar Administrador</h2>
+
+<h3>Está seguro de borrar este registro?</h3>
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Regresar</a>
+    </form>
+</div>

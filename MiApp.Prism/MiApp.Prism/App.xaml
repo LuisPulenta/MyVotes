@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             x:Class="MiApp.Prism.App">
+  <Application.Resources>
+
+    <!-- Application resource dictionary -->
+
+
+    <ResourceDictionary>
+      <!-- Parameters -->
+      <x:String x:Key="UrlAPI">http://keypress.serveftp.net:88/MiAppApi/</x:String>
+      <x:String x:Key="UrlNoImage">noimage.png</x:String>
+      <x:String x:Key="UrlNoUser">nouser.png</x:String>
+    </ResourceDictionary>
+
+
+    <!-- Colors -->
+    <Color x:Key="ColorBackground">#829FD9</Color>
+    <Color x:Key="ColorPrimary">#7B84DB</Color>
+    <Color x:Key="ColorSecondary">#A67153</Color>
+    <Color x:Key="ColorDanger">#BF1736</Color>
+    <Color x:Key="ColorAccent">#040BDB</Color>
+    <Color x:Key="ColorFont">#000000</Color>
+    <Color x:Key="ColorFontInverse">#FFFFFF</Color>
+
+    <!-- Styles -->
+    <Style TargetType="Button">
+      <Setter Property="BackgroundColor" Value="{StaticResource ColorAccent}" />
+      <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+      <Setter Property="TextColor" Value="{StaticResource ColorFontInverse}" />
+    </Style>
+
+    <Style TargetType="Label">
+      <Setter Property="TextColor" Value="{StaticResource ColorFont}" />
+    </Style>
+
+    <Style x:Key="SecondaryButton" TargetType="Button">
+      <Setter Property="BackgroundColor" Value="{StaticResource ColorSecondary}" />
+    </Style>
+
+    <Style x:Key="DangerButton" TargetType="Button">
+      <Setter Property="BackgroundColor" Value="{StaticResource ColorDanger}" />
+    </Style>
+
+    <Style TargetType="Entry">
+      <Setter Property="BackgroundColor" Value="{StaticResource ColorFontInverse}" />
+    </Style>
+
+    <Style TargetType="Picker">
+      <Setter Property="BackgroundColor" Value="{StaticResource ColorFontInverse}" />
+    </Style>
+
+    <Style TargetType="DatePicker">
+      <Setter Property="BackgroundColor" Value="{StaticResource ColorFontInverse}" />
+    </Style>
+
+
+  </Application.Resources>
+</prism:PrismApplication>

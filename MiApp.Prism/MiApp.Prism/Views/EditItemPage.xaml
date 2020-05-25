@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+          	 xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MiApp.Prism.Views.EditItemPage"
+             BackgroundColor="{StaticResource ColorBackground}"
+             Title="{Binding Title}">
+
+  <AbsoluteLayout>
+
+    <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All" 
+                     Padding="5">
+      <ScrollView>
+        <StackLayout
+    Padding="5">
+
+
+          <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Source="{Binding Image}" 
+                                                CacheDuration= "50"
+                                                HeightRequest="300"
+                                                Margin="5"
+                                                RetryCount= "3"
+                                                RetryDelay= "600">
+
+
+            <ffimageloading:CachedImage.GestureRecognizers>
+              <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+            </ffimageloading:CachedImage.GestureRecognizers>
+
+          </ffimageloading:CachedImage>
+          <Label
+            Text="Toque la imagen para cambiar la foto"
+            HorizontalOptions="Center"
+            FontSize="Small"
+            TextColor="Blue">
+          </Label>
+
+
+          <Grid Padding="5,5">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label
+          Grid.Row="0"
+          Grid.Column="0"
+          Text="Item:"
+          VerticalOptions="Center"
+          FontSize="Micro">
+            </Label>
+            <Entry
+          Grid.Row="0"
+          Grid.Column="1"
+          Grid.ColumnSpan="2"
+          Placeholder="Ingrese Item..."
+          VerticalOptions="Start"
+          HorizontalOptions="FillAndExpand"
+          FontSize="Micro"
+          HeightRequest="35"
+          Text="{Binding Name}">
+            </Entry>
+            <Label
+          Grid.Row="1"
+          Grid.Column="0"
+          Text="Fecha:"
+          VerticalOptions="Center"
+          FontSize="Micro">
+            </Label>
+            <DatePicker  Grid.Row="1"
+                     Grid.Column="1"
+                     VerticalOptions="Center"
+                     MaximumDate="{Binding Hoy}"
+                     FontSize="Micro"
+                     Date="{Binding ItemDate}"/>
+            <Label 
+          Grid.Row="2"
+          Grid.Column="0"
+          FontSize="Micro"
+          Text="Cantidad:"
+          VerticalOptions="Center">
+            </Label>
+
+            <Entry
+          Grid.Row="2"
+          Grid.Column="1"
+          Grid.ColumnSpan="2"
+          Placeholder="Ingrese Cantidad..."
+          VerticalOptions="Start"
+          HorizontalOptions="FillAndExpand"
+          FontSize="Micro"
+          HeightRequest="35"
+          Text="{Binding Quantity}">
+            </Entry>
+
+            <Label 
+          Grid.Row="3"
+          Grid.Column="0"
+          FontSize="Micro"
+          Text="Precio:"
+          VerticalOptions="Center">
+            </Label>
+
+            <Entry
+          Grid.Row="3"
+          Grid.Column="1"
+          Grid.ColumnSpan="2"
+          Placeholder="Ingrese Cantidad..."
+          VerticalOptions="Start"
+          HorizontalOptions="FillAndExpand"
+          FontSize="Micro"
+          HeightRequest="35"
+          Text="{Binding Price}">
+            </Entry>
+
+            <Label 
+          Grid.Row="4"
+          Grid.Column="0"
+          FontSize="Micro"
+          Text="Activo:"
+          VerticalOptions="Center">
+            </Label>
+
+            <CheckBox
+              Grid.Row="4"
+              Grid.Column="1"
+              IsChecked="{Binding Active}">
+            </CheckBox>
+
+          </Grid>
+        </StackLayout>
+      </ScrollView>
+
+
+
+      <Button 
+        Text="grabar"
+        BackgroundColor="Blue"
+        IsEnabled="{Binding IsEnabled}"
+        CornerRadius="20"
+        FontSize="Small"
+        TextColor="White"
+        FontAttributes="Bold"
+        VerticalOptions="EndAndExpand"
+        Command="{Binding SaveCommand}"></Button>
+
+
+
+
+
+    </StackLayout>
+
+
+    <busyindicator:SfBusyIndicator AnimationType="Gear" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   BackgroundColor="Transparent"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="{StaticResource ColorAccent}"
+                	                   IsVisible="{Binding IsRunning}"
+                	                   Title="Guardando..."
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="80"
+                	                   ViewBoxHeight="80" />
+
+  </AbsoluteLayout>
+
+
+
+
+
+</ContentPage>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:prism="http://prismlibrary.com"
+                  xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                  xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+
+                  prism:ViewModelLocator.AutowireViewModel="True"
+                  x:Class="MiApp.Prism.Views.MiAppMasterDetailPage">
+
+  <MasterDetailPage.Master>
+    <ContentPage Title="Menu">
+      <StackLayout Padding="20">
+
+        <RelativeLayout>
+          <RelativeLayout.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding ModifyUserCommand}"/>
+          </RelativeLayout.GestureRecognizers>
+
+          <Image x:Name="Logo" HorizontalOptions="Center"
+                           RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=X,Factor=1,Constant=60}"
+                           HeightRequest="150"
+                 WidthRequest="150"
+                           Source="logo"/>
+          <ffimageloading:CachedImage x:Name="Picture" 
+                                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Logo,Property=Y,Factor=1,Constant=60}"
+                                                Aspect="AspectFill"
+                                                Source="{Binding User.PictureFullPath}" 
+                                                CacheDuration= "50"
+                                                HeightRequest="100"
+                                                WidthRequest="100"
+                                                Margin="5"
+                                                RetryCount= "3"
+                                                RetryDelay= "600">
+            <ffimageloading:CachedImage.Transformations>
+              <fftransformations:CircleTransformation />
+            </ffimageloading:CachedImage.Transformations>
+          </ffimageloading:CachedImage>
+          <Label RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Picture,Property=Y,Factor=1,Constant=110}"
+                           FontAttributes="Bold"
+                           FontSize="Large"
+                           Text="{Binding User.FullName}"
+                           TextColor="Black"/>
+
+        </RelativeLayout>
+
+
+        
+       
+
+        <ListView BackgroundColor="Transparent"
+                	      ItemsSource="{Binding Menus}"
+                	      HasUnevenRows="True"
+                	      SeparatorVisibility="None">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <ViewCell>
+                <Grid>
+                  <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectMenuCommand}"/>
+                  </Grid.GestureRecognizers>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                  </Grid.ColumnDefinitions>
+                  <Image Grid.Column="0"
+                                    	   HeightRequest="32"
+                                           Margin="5"
+                                    	   Source="{Binding Icon}"
+                                    	   WidthRequest="32"/>
+                  <Label Grid.Column="1"
+                                           FontAttributes="Bold"
+                                   	       VerticalOptions="Center"
+                                   	       TextColor="Black"
+                                   	       Text="{Binding Title}"/>
+                </Grid>
+              </ViewCell>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+      </StackLayout>
+    </ContentPage>
+  </MasterDetailPage.Master>
+
+</MasterDetailPage>

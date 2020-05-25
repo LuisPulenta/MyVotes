@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MiApp.Prism.Views.ItemsPage"
+             BackgroundColor="{StaticResource ColorBackground}"
+             Title="{Binding Title}">
+  <ContentPage.ToolbarItems>
+
+    <ToolbarItem Icon="ic_action_add_circle_outline"
+                 Command="{Binding AddItemCommand}" />
+  </ContentPage.ToolbarItems>
+  <StackLayout Padding="5">
+    <SearchBar 
+          Grid.Row="4"
+          Grid.Column="1"
+          Grid.ColumnSpan="2"
+          Placeholder="Buscar..."
+          BackgroundColor="White"
+          FontSize="Micro"
+      
+          WidthRequest="50"
+          Text="{Binding Filter}"
+          TextChanged="SearchBar_TextChanged"
+          HeightRequest="35">
+
+    </SearchBar>
+
+    <StackLayout Orientation="Horizontal"
+                   BackgroundColor="White"
+                   Padding="2"
+                   >
+      <Label Text="Cantidad de Items:"
+               FontSize="Small"
+               TextColor="Blue"
+               FontAttributes="Bold"></Label>
+      <Label Text="{Binding CantItems}"
+               TextColor="Red"
+               FontSize="Small"
+               FontAttributes="Bold"></Label>
+    </StackLayout>
+
+    <ListView ItemsSource="{Binding Items}"
+              HasUnevenRows="True"
+              IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshCommand}"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                SeparatorVisibility="None">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <Frame CornerRadius="10"
+                     HasShadow="True"
+                     BackgroundColor="LightCyan"
+                     Margin="3"
+                     Padding="5"
+                     >
+          <Grid>
+            <Grid.GestureRecognizers>
+              <TapGestureRecognizer Command="{Binding SelectItemCommand}"/>
+            </Grid.GestureRecognizers>
+
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+
+                </Grid.RowDefinitions>
+                <ffimageloading:CachedImage Grid.Column="0"
+                                            Grid.RowSpan="5"
+                                                    Aspect="AspectFit"
+                                                    Source="{Binding LogoFullPath}" 
+                                                    CacheDuration= "50"
+                                                    Margin="5"
+                                                    RetryCount= "3"
+                                                    RetryDelay= "600"
+                                                    WidthRequest="100"/>
+
+             <Label 
+               Grid.Row="0"
+               Grid.Column="1"
+               Grid.ColumnSpan="2"
+               Text="{Binding Name}" 
+               FontAttributes="Bold"
+               FontSize="Small"
+               LineBreakMode="TailTruncation" />
+
+            <Label 
+               Grid.Row="1"
+               Grid.Column="1"
+               Text="Fecha:"
+               FontSize="Micro"
+               LineBreakMode="TailTruncation"
+               FontAttributes="Italic" 
+               VerticalOptions="End" />
+            <Label 
+              Grid.Row="1"
+              Grid.Column="2"
+              Text="{Binding Date, StringFormat='{0:yyyy/MM/dd}'}"
+              FontSize="Micro"
+              LineBreakMode="TailTruncation"
+              FontAttributes="Italic" 
+              VerticalOptions="End" />
+            
+            <Label 
+              Grid.Row="2"
+              Grid.Column="1"
+              Text="Cantidad:"
+              FontSize="Micro"
+              LineBreakMode="TailTruncation"
+              FontAttributes="Italic" 
+              VerticalOptions="End" />
+                <Label 
+              Grid.Row="2"
+              Grid.Column="2"
+              Text="{Binding Quantity}"
+                  FontSize="Micro"
+              LineBreakMode="TailTruncation"
+              FontAttributes="Italic" 
+              VerticalOptions="End" />
+
+            <Label 
+              Grid.Row="3"
+              Grid.Column="1"
+              Text="Precio:"
+              FontSize="Micro"
+              LineBreakMode="TailTruncation"
+              FontAttributes="Italic" 
+              VerticalOptions="End" />
+            <Label 
+              Grid.Row="3"
+              Grid.Column="2"
+              Text="{Binding Price}"
+              FontSize="Micro"
+              LineBreakMode="TailTruncation"
+              FontAttributes="Italic" 
+              VerticalOptions="End" />
+
+            <Label 
+              Grid.Row="4"
+              Grid.Column="1"
+              Text="Activo:"
+              FontSize="Micro"
+              LineBreakMode="TailTruncation"
+              FontAttributes="Italic" 
+              VerticalOptions="Center" />
+            <CheckBox
+              Grid.Row="4"
+              Grid.Column="2"
+              IsEnabled="False"
+              IsChecked="{Binding Active}">
+            </CheckBox>
+            
+            <ImageButton Grid.Row="0"
+              Grid.Column="5"
+              Grid.RowSpan="2"
+              BackgroundColor="Transparent"
+              HeightRequest="44"
+              VerticalOptions="Center"                     
+              Command="{Binding DeleteItemCommand}" 
+              Source="ic_action_delete_forever.png"/>
+            <ImageButton Grid.Row="2"
+              Grid.Column="5"
+              Grid.RowSpan="3"
+              BackgroundColor="Transparent"                     
+              HeightRequest="44"
+              VerticalOptions="Center"                     
+              Command="{Binding EditItemCommand}" 
+              Source="ic_action_edit.png"/>
+            </Grid>
+  
+            </Frame>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>
+
+  

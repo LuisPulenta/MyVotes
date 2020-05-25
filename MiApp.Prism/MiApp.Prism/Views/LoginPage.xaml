@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+          	 xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MiApp.Prism.Views.LoginPage"
+             BackgroundColor="{StaticResource ColorBackground}"
+             Title="{Binding Title}">
+
+  <AbsoluteLayout>
+    <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All" 
+                     Padding="5">
+      <Image HeightRequest="150"
+                   Margin="0,5,0,0"
+                   Source="logo"/>
+
+      <StackLayout VerticalOptions="StartAndExpand">
+        <Grid Margin="5" 
+                  VerticalOptions="StartAndExpand">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+          </Grid.ColumnDefinitions>
+          <Label Grid.Column="0" 
+                       Grid.Row="0"
+                       HorizontalTextAlignment="End"
+                       Text="Email:"
+                       VerticalOptions="Center"/>
+          <Entry Grid.Column="1"
+                       Grid.Row="0"
+                       BackgroundColor="{StaticResource ColorFontInverse}"
+                       Keyboard="Email"
+                       Placeholder="Ingrese Email..."
+                       Text="{Binding Email}"/>
+          <Label Grid.Column="0" 
+                       Grid.Row="1"
+                       HorizontalTextAlignment="End"
+                       Text="Password:"
+                       VerticalOptions="Center"/>
+          <Entry Grid.Column="1"
+                       Grid.Row="1"
+                       BackgroundColor="{StaticResource ColorFontInverse}"
+                       IsPassword="True"
+                       Placeholder="Ingrese Password..."
+                       Text="{Binding Password}"/>
+
+        </Grid>
+
+
+        <Label FontAttributes="Bold"
+            HorizontalOptions="Center" 
+            Text="¿Olvidó su Password?"
+            TextColor="{StaticResource ColorAccent}">
+          <Label.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+          </Label.GestureRecognizers>
+        </Label>
+      </StackLayout>
+
+      <StackLayout>
+        <Button Command="{Binding LoginCommand}" 
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="Iniciar Sesion"/>
+        <Button Command="{Binding RegisterCommand}" 
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="Registrarse"
+                        Style="{StaticResource DangerButton}"/>
+      </StackLayout>
+    </StackLayout>
+    <busyindicator:SfBusyIndicator AnimationType="Gear" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   BackgroundColor="Transparent"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="{StaticResource ColorAccent}"
+                	                   IsVisible="{Binding IsRunning}"
+                	                   Title="Cargando..."
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="80"
+                	                   ViewBoxHeight="80" />
+  </AbsoluteLayout>
+</ContentPage>

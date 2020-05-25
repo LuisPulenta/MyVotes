@@ -1,0 +1,73 @@
+﻿@model MiApp.Web.Models.EditUserViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Editar Usuario</h2>
+
+<h4></h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="ChangeUser" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="UserTypeId" />
+            <input type="hidden" asp-for="PicturePath" />
+
+            <div class="form-group">
+                <label asp-for="Document" class="control-label"></label>
+                <input asp-for="Document" class="form-control" />
+                <span asp-validation-for="Document" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" type="file" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Grabar" class="btn btn-primary" />
+                <a asp-action="ChangePasswordMVC" class="btn btn-warning">Cambiar Contraseña</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        @if (!string.IsNullOrEmpty(Model.PicturePath))
+        {
+            <img src="@Url.Content(Model.PicturePath)" alt="Image" style="width:300px;height:300px;max-width: 100%; height: auto;" />
+        }
+    </div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
