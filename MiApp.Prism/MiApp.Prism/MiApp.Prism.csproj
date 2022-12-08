@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="17.3.0.9-beta" />
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
